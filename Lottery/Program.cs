@@ -9,13 +9,19 @@ int[] selectedNumbers = new int[drawnNumbers];
 int minNumber = 0;  
 int maxNumber = 9;
 
+// Random number generator
+/*
+Random rnd = new Random();
+int randomNumber = rnd.next(minNumber, maxNumber);
+*/
+
 
 // while loop to repeat for loop if wrong input
 while (true)
 {
     
-    for (int i = 0; i<selectedNumbers.Length; i++)
-     {
+    for ( int i = 0; i<selectedNumbers.Length; i++)
+    {
         //User input convert to int - while loop to repeat validation
         Console.WriteLine($"Please enter {drawnNumbers} numbers between {minNumber} - {maxNumber}.");
         string userInputString = Console.ReadLine();
@@ -30,10 +36,13 @@ while (true)
         {
             Console.WriteLine($"Incorrect input, please enter number between {minNumber} and {maxNumber}");
             break;
+            
         }
     }
-    
-    // Current issue: numbers outside the range trigger input error but still gets added to array
+
+    // Current issue: numbers outside the range trigger input error + i resets to 0 after counting 5 caused by while loop
+    // Check for loop to not i++ when else checks
+
 
 }
 
