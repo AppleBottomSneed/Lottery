@@ -13,19 +13,24 @@ int maxNumber = 9;
 for (int i = 0; i<selectedNumbers.Length; i++)
 {
 
-    //User input convert to int
+    
+
+    //User input convert to int - while loop to repeat validation
     while (true)
     {
+        Console.WriteLine($"Please enter {drawnNumbers} numbers between {minNumber} - {maxNumber}. Number {selectedNumbers.Length}:");
         string userInputString = Console.ReadLine();
-        bool parsedNumber = int.TryParse(userInputString, out convertedNumber);
-        if (convertedNumber >= minNumber && convertedNumber <= maxNumber)
+        bool parsedNumber = int.TryParse(userInputString, out selectedNumbers[i]);
+
+        // if parsedNumber test is true and selectedNumbers is within range then:
+        if (parsedNumber == true && selectedNumbers[i] >= minNumber && selectedNumbers[i] <= maxNumber)
         {
-            Console.WriteLine($"Please enter {drawnNumbers} numbers between {minNumber} - {maxNumber}. Number {selectedNumbers.Length}:");
-            selectedNumbers[i] = convertedNumber;
+            
         }
         else
         {
             Console.WriteLine($"Incorrect input, please enter number between {minNumber} and {maxNumber}");
+            break;
         }
     }
 }
