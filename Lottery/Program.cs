@@ -3,6 +3,9 @@
 int drawnNumbers = 5;
 int[] selectedNumbers = new int[drawnNumbers];
 
+// dummy use to allow parsing
+int[] dummyNumbers = new int[drawnNumbers];
+
 
 
 // Input range is single digits
@@ -16,34 +19,35 @@ int randomNumber = rnd.next(minNumber, maxNumber);
 */
 
 
-// while loop to repeat for loop if wrong input
-while (true)
+
+
+for ( int i = 0; i<selectedNumbers.Length;)
 {
-    
-    for ( int i = 0; i<selectedNumbers.Length; i++)
+    //User input convert to int - while loop to repeat validation
+    Console.WriteLine($"Please enter {drawnNumbers} numbers between {minNumber} - {maxNumber}.");
+    string userInputString = Console.ReadLine();
+    // dont want parse check to add input to selectedNumbers yet
+    bool parsedNumber = int.TryParse(userInputString, out dummyNumbers[i]);
+         
+    // if parsedNumber test is true and selectedNumbers is within range then:
+    if (parsedNumber == true && dummyNumbers[i] >= minNumber && dummyNumbers[i] <= maxNumber)
     {
-        //User input convert to int - while loop to repeat validation
-        Console.WriteLine($"Please enter {drawnNumbers} numbers between {minNumber} - {maxNumber}.");
-        string userInputString = Console.ReadLine();
-        bool parsedNumber = int.TryParse(userInputString, out selectedNumbers[i]);
-
-        // if parsedNumber test is true and selectedNumbers is within range then:
-        if (parsedNumber == true && selectedNumbers[i] >= minNumber && selectedNumbers[i] <= maxNumber)
-        {
-            int.TryParse(userInputString, out selectedNumbers[i]);
-        }
-        else
-        {
-            Console.WriteLine($"Incorrect input, please enter number between {minNumber} and {maxNumber}");
-            break;
-            
-        }
+        int.TryParse(userInputString, out selectedNumbers[i]);
+        i++;
     }
-
-    // Current issue: numbers outside the range trigger input error + i resets to 0 after counting 5 caused by while loop
-    // Check for loop to not i++ when else checks
-
-
+    else
+    {
+        Console.WriteLine($"Incorrect input, please enter number between {minNumber} and {maxNumber}");
+        continue;
+            
+    }
 }
+
+
+// Fixed issues:
+// i resets to 0 after counting 5 caused by while loop
+// Check for loop to not i++ when else checks --> remove from for loop condition and put into correct input result
+
+
 
 
