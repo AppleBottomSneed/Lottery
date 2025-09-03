@@ -12,11 +12,11 @@ int[] dummyNumbers = new int[drawnNumbers];
 int minNumber = 0;  
 int maxNumber = 9;
 
-// Random number generator
-/*
+// Random number generator, a random number within range up to drawnNumbers
+
 Random rnd = new Random();
-int randomNumber = rnd.next(minNumber, maxNumber);
-*/
+int randomNumber = rnd.Next(minNumber, maxNumber);
+int[] randomArray = new int[randomNumber];
 
 
 
@@ -41,6 +41,14 @@ for ( int i = 0; i<selectedNumbers.Length;)
         continue;
             
     }
+}
+
+// Random generator loop, length the same as selectedNumbers    
+
+for (int i = 0; i < selectedNumbers.Length;)
+{
+    randomArray[i] = randomNumber;
+    i++;
 }
 
 
