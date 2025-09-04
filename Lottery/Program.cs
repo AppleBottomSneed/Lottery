@@ -7,16 +7,14 @@ int[] selectedNumbers = new int[drawnNumbers];
 int[] dummyNumbers = new int[drawnNumbers];
 
 
-
 // Input range is single digits
 int minNumber = 0;  
 int maxNumber = 9;
 
-// Random number generator
-/*
+// Random number generator, a random number within range up to drawnNumbers
+int[] randomArray = new int[drawnNumbers];
 Random rnd = new Random();
-int randomNumber = rnd.next(minNumber, maxNumber);
-*/
+
 
 
 
@@ -43,10 +41,22 @@ for ( int i = 0; i<selectedNumbers.Length;)
     }
 }
 
+// Random generator loop, length the same as selectedNumbers    
+
+for (int i = 0; i < selectedNumbers.Length; i++)
+{ 
+    int randomNumber = rnd.Next(minNumber, maxNumber);
+    randomArray[i] = randomNumber;  
+}
+
 
 // Fixed issues:
 // i resets to 0 after counting 5 caused by while loop
 // Check for loop to not i++ when else checks --> remove from for loop condition and put into correct input result
+// random array should be made into a new int[]drawn numbers, Random instance only rolled once inside a loop
+
+//Current issues:
+//
 
 
 
