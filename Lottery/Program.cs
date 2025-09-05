@@ -67,15 +67,41 @@ void LinearSearch(int[] randomArray, int[]selectedNumbers )
     }
 }
 
-// Binary search for lottery 
-void BinarySearch(string theMessage)
+// Binary search for lottery - one value at a time
+int BinarySearch(int[]randomArray, int selectedValue, int low, int high )
 {
-    Console.WriteLine(theMessage);
+    //binary search only works on sorted arrays
+    Array.Sort(randomArray);
+    
+    //cuts search in half 
+    if (high >= low)
+    {
+        int mid = low + (high - low) / 2;
+        if (randomArray[mid] == selectedValue) return mid;
+
+        if (randomArray[mid] > selectedValue) return BinarySearch(randomArray, selectedValue, low, mid - 1);
+        return BinarySearch(randomArray, selectedValue, mid + 1, high);
+
+    }
+    return -1;
 }
 
 Console.WriteLine($"Your selected numbers: {string.Join(" ", selectedNumbers)}");
 Console.WriteLine($"Your lottery  numbers: {string.Join(" ", randomArray)}");
+Console.WriteLine("Using a Linear search:");
 LinearSearch(randomArray, selectedNumbers);
+Console.WriteLine("Using a Binary search:");
+
+foreach (int selectedValue in selectedNumbers)
+{
+    // BinarySearch (randomArray, specific value of number in selectedNumbers, starting index, index -1 as index starts at 0 
+    int search = BinarySearch(randomArray, selectedValue, 0, randomArray.Length - 1);
+    // if not found in BinarySearch function (return -1) then:
+    if (search != -1)
+        Console.WriteLine($"Chosen number {selectedValue} matches the lottery number!");
+    else
+        Console.WriteLine($"Chosen number {selectedValue} not found");
+}
 
 // Fixed issues:
 // i resets to 0 after counting 5 caused by while loop
