@@ -49,6 +49,33 @@ for (int i = 0; i < selectedNumbers.Length; i++)
     randomArray[i] = randomNumber;  
 }
 
+// Linear search for lottery, index variable must be different for each array
+void LinearSearch(int[] randomArray, int[]selectedNumbers )
+{
+    //loop where each number of inside selectedNumber is chosen for the nested loop
+    for (int i = 0; i < selectedNumbers.Length; i++)
+    {
+        // then this nested loop goes through each number inside randomArray
+        for (int x = 0; x < randomArray.Length; x++)
+        {
+            // index i checks with index x as it increases each loop
+            if (selectedNumbers[i] == randomArray[x])
+            {
+                Console.WriteLine($"Your chosen number {selectedNumbers[i]} matches with lottery number {randomArray[x]}!");
+            }
+        }
+    }
+}
+
+// Binary search for lottery 
+void BinarySearch(string theMessage)
+{
+    Console.WriteLine(theMessage);
+}
+
+Console.WriteLine($"Your selected numbers: {string.Join(" ", selectedNumbers)}");
+Console.WriteLine($"Your lottery  numbers: {string.Join(" ", randomArray)}");
+LinearSearch(randomArray, selectedNumbers);
 
 // Fixed issues:
 // i resets to 0 after counting 5 caused by while loop
@@ -56,7 +83,7 @@ for (int i = 0; i < selectedNumbers.Length; i++)
 // random array should be made into a new int[]drawn numbers, Random instance only rolled once inside a loop
 
 //Current issues:
-//
+// Implement double to avoid decimal input
 
 
 
