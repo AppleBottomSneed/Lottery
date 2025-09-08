@@ -42,11 +42,13 @@ for ( int i = 0; i<selectedNumbers.Length;)
 }
 
 // Random generator loop, length the same as selectedNumbers    
-
-for (int i = 0; i < selectedNumbers.Length; i++)
-{ 
-    int randomNumber = rnd.Next(minNumber, maxNumber);
-    randomArray[i] = randomNumber;  
+void RandomNumberArray(int[] randomArray) {
+    for (int i = 0; i < selectedNumbers.Length; i++)
+    {
+        int randomNumber = rnd.Next(minNumber, maxNumber);
+        randomArray[i] = randomNumber;
+    }
+    return;
 }
 
 // Linear search for lottery, index variable must be different for each array
@@ -62,12 +64,16 @@ void LinearSearch(int[] randomArray, int[]selectedNumbers )
             if (selectedNumbers[i] == randomArray[x])
             {
                 Console.WriteLine($"Your chosen number {selectedNumbers[i]} matches with lottery number {randomArray[x]}!");
+                
             }
         }
+    
     }
 }
 
-// Binary search for lottery - one value at a time
+
+
+// Binary search for lottery - one value at a time. use array.binarysearch outside this assessment
 int BinarySearch(int[]randomArray, int selectedValue, int low, int high )
 {
     //binary search only works on sorted arrays
@@ -85,6 +91,8 @@ int BinarySearch(int[]randomArray, int selectedValue, int low, int high )
     }
     return -1;
 }
+
+RandomNumberArray(randomArray);
 
 Console.WriteLine($"Your selected numbers: {string.Join(" ", selectedNumbers)}");
 Console.WriteLine($"Your lottery  numbers: {string.Join(" ", randomArray)}");
@@ -110,6 +118,7 @@ foreach (int selectedValue in selectedNumbers)
 
 //Current issues:
 // Implement double to avoid decimal input
+// Need to check if linear search algorithm is properly implemented (no return on void)
 
 
 
